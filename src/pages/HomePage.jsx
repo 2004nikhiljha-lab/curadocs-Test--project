@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { FaUserMd, FaUser, FaArrowRight, FaShieldAlt, FaClock, FaChartLine, FaHeart, FaCalendarCheck, FaLaptopMedical } from 'react-icons/fa';
 
 export default function HomePage() {
-  const [scrollY, setScrollY] = useState(0);
+  const [selectedRole, setSelectedRole] = useState(null);
 
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const handleRoleSelect = (role) => {
+    setSelectedRole(role);
+    alert(`You selected: ${role}\n\nIn your actual app, this would navigate to /signup?role=${role}`);
+  };
 
-  // Simulate navigation
-  const handleNavigate = (path) => {
-    console.log(`Navigating to: ${path}`);
+  const handleLogin = () => {
+    alert('This would navigate to /login in your actual app');
+  };
+
+  const handleSignup = () => {
+    alert('This would navigate to /signup in your actual app');
   };
 
   return (
@@ -42,13 +44,13 @@ export default function HomePage() {
             </div>
             <div className="flex gap-2 sm:gap-3">
               <button 
-                onClick={() => handleNavigate('/login')}
+                onClick={handleLogin}
                 className="px-4 sm:px-6 py-2 sm:py-2.5 border-2 border-blue-400 text-blue-400 rounded-lg hover:bg-blue-400 hover:text-white transition-all duration-300 font-semibold text-sm sm:text-base hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50"
               >
                 Login
               </button>
               <button 
-                onClick={() => handleNavigate('/signup')}
+                onClick={handleSignup}
                 className="px-4 sm:px-6 py-2 sm:py-2.5 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:shadow-xl hover:shadow-purple-500/50 transition-all duration-300 font-semibold text-sm sm:text-base hover:scale-105"
               >
                 Sign Up
@@ -102,7 +104,7 @@ export default function HomePage() {
           <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 max-w-4xl mx-auto mb-12 sm:mb-16">
             {/* Doctor Card */}
             <div 
-              onClick={() => handleNavigate('/signup?role=doctor')}
+              onClick={() => handleRoleSelect('doctor')}
               className="group relative border-2 border-white/20 bg-gradient-to-br from-blue-900/40 to-blue-800/40 backdrop-blur-md rounded-2xl p-6 sm:p-8 hover:border-blue-400 hover:shadow-2xl hover:shadow-blue-500/30 transition-all duration-500 cursor-pointer overflow-hidden animate-fade-in-up"
               style={{ animationDelay: '0.1s' }}
             >
@@ -127,7 +129,7 @@ export default function HomePage() {
 
             {/* Patient Card */}
             <div 
-              onClick={() => handleNavigate('/signup?role=patient')}
+              onClick={() => handleRoleSelect('patient')}
               className="group relative border-2 border-white/20 bg-gradient-to-br from-purple-900/40 to-purple-800/40 backdrop-blur-md rounded-2xl p-6 sm:p-8 hover:border-purple-400 hover:shadow-2xl hover:shadow-purple-500/30 transition-all duration-500 cursor-pointer overflow-hidden animate-fade-in-up"
               style={{ animationDelay: '0.2s' }}
             >
