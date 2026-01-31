@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { patientAPI } from '../utils/api';
-import { FaHeartbeat, FaCalendarAlt, FaFileMedical, FaPills, FaSignOutAlt, FaTint, FaUserMd, FaUser, FaChartLine } from 'react-icons/fa';
+import { FaHeartbeat, FaCalendarAlt, FaFileMedical, FaPills, FaSignOutAlt, FaTint, FaUserMd, FaUser, FaRobot } from 'react-icons/fa';
+import { BiBot } from 'react-icons/bi';
 
 export default function PatientDashboard() {
   const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [dashboardData, setDashboardData] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -135,6 +138,48 @@ export default function PatientDashboard() {
           </div>
         </div>
 
+        {/* AI Health Assistant - Featured Card */}
+        <div className="mb-8 bg-gradient-to-br from-blue-500 via-blue-600 to-purple-600 rounded-2xl p-8 text-white shadow-xl hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-[1.02]"
+             onClick={() => navigate('/health-assistant')}>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-6">
+              <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg">
+                <BiBot className="text-5xl animate-pulse" />
+              </div>
+              <div>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="bg-white/30 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wide">New Feature</span>
+                  <span className="bg-green-400/30 px-3 py-1 rounded-full text-xs font-bold">24/7 Available</span>
+                </div>
+                <h3 className="text-3xl font-bold mb-2">AI Health Assistant</h3>
+                <p className="text-blue-100 text-lg mb-3">
+                  Get instant answers to your health questions powered by advanced AI
+                </p>
+                <ul className="space-y-1 text-sm text-blue-100">
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    Instant health information & guidance
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    Emergency symptom detection
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 bg-white rounded-full"></div>
+                    Chat history saved for reference
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-bold text-lg hover:bg-blue-50 transition-all shadow-lg hover:shadow-xl transform hover:scale-105">
+                Start Chat →
+              </button>
+              <span className="text-xs text-blue-100">Free • No appointment needed</span>
+            </div>
+          </div>
+        </div>
+
         {/* Health Stats Card */}
         <div className="bg-white rounded-2xl p-8 mb-8 shadow-lg border border-purple-100">
           <h3 className="text-2xl font-bold mb-6 flex items-center gap-3 text-gray-800">
@@ -248,7 +293,7 @@ export default function PatientDashboard() {
         </div>
 
         {/* Quick Actions */}
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-4 gap-6">
           <button className="bg-white rounded-2xl p-8 shadow-lg border border-purple-100 hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all duration-300 text-left group">
             <div className="w-12 h-12 bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <FaCalendarAlt className="text-white text-xl" />
@@ -258,6 +303,19 @@ export default function PatientDashboard() {
               Schedule a visit with your doctor
             </p>
           </button>
+          
+          <button 
+            onClick={() => navigate('/health-assistant')}
+            className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl p-8 shadow-lg border-2 border-blue-400 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 text-left group text-white">
+            <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
+              <BiBot className="text-white text-2xl" />
+            </div>
+            <h4 className="font-bold text-lg mb-2">AI Assistant</h4>
+            <p className="text-sm text-blue-100">
+              Ask health questions 24/7
+            </p>
+          </button>
+
           <button className="bg-white rounded-2xl p-8 shadow-lg border border-pink-100 hover:shadow-xl hover:border-pink-300 hover:-translate-y-1 transition-all duration-300 text-left group">
             <div className="w-12 h-12 bg-gradient-to-br from-pink-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <FaFileMedical className="text-white text-xl" />
@@ -267,6 +325,7 @@ export default function PatientDashboard() {
               Access your complete medical history
             </p>
           </button>
+          
           <button className="bg-white rounded-2xl p-8 shadow-lg border border-blue-100 hover:shadow-xl hover:border-blue-300 hover:-translate-y-1 transition-all duration-300 text-left group">
             <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform shadow-md">
               <FaPills className="text-white text-xl" />

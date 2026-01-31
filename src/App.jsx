@@ -5,6 +5,8 @@ import SignupPage from './pages/SignupPage';
 import LoginPage from './pages/LoginPage';
 import DoctorDashboard from './pages/DoctorDashboard';
 import PatientDashboard from './pages/PatientDashboard';
+import HealthBotPage from './pages/HealthBotPage';
+import BookAppointmentPage from './pages/BookAppointmentPage';
 import ProtectedRoute from './components/ProtectedRoute';
 
 function App() {
@@ -28,6 +30,24 @@ function App() {
             element={
               <ProtectedRoute allowedRoles={['patient']}>
                 <PatientDashboard />
+              </ProtectedRoute>
+            } 
+          />
+          {/* Health Bot - Available for both doctors and patients */}
+          <Route 
+            path="/health-assistant" 
+            element={
+              <ProtectedRoute allowedRoles={['doctor', 'patient']}>
+                <HealthBotPage />
+              </ProtectedRoute>
+            } 
+          />
+          {/* Book Appointment - Only for patients */}
+          <Route 
+            path="/book-appointment" 
+            element={
+              <ProtectedRoute allowedRoles={['patient']}>
+                <BookAppointmentPage />
               </ProtectedRoute>
             } 
           />

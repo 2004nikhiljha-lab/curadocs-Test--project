@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { FaUserMd, FaUser, FaArrowRight, FaShieldAlt, FaClock, FaChartLine } from 'react-icons/fa';
+import Navbar from '../components/Navbar';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -22,33 +23,8 @@ export default function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex flex-col">
-      {/* Header */}
-      <header className="backdrop-blur-sm bg-white/70 border-b border-gray-200 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
-                <FaUserMd className="text-white text-xl" />
-              </div>
-              <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                CuraDocs
-              </h1>
-            </div>
-            <div className="flex gap-3">
-              <Link to="/login">
-                <button className="px-6 py-2.5 border-2 border-blue-600 text-blue-600 rounded-lg hover:bg-blue-600 hover:text-white transition-all duration-300 font-semibold shadow-sm hover:shadow-md">
-                  Login
-                </button>
-              </Link>
-              <Link to="/signup">
-                <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:shadow-lg transition-all duration-300 font-semibold hover:scale-105">
-                  Sign Up
-                </button>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* Navbar Component */}
+      <Navbar />
 
       {/* Hero Section */}
       <main className="flex-1 flex items-center justify-center px-4 py-12">
@@ -148,12 +124,12 @@ export default function HomePage() {
       <footer className="backdrop-blur-sm bg-white/70 border-t border-gray-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600">
           <p className="text-sm">
-            &copy; 2025 CuraDocs. Built with ❤️ for CuraDocs Internship Assignment.
+            &copy; 2025 CuraDocs. Built with ❤️ for better healthcare.
           </p>
         </div>
       </footer>
 
-      <style jsx>{`
+      <style>{`
         @keyframes gradient {
           0%, 100% { background-position: 0% 50%; }
           50% { background-position: 100% 50%; }
